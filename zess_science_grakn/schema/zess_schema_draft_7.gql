@@ -1,0 +1,407 @@
+define
+
+algorithm sub attribute,
+    value string;
+
+    blast sub algorithm,
+        value boolean;
+
+alignment-length sub attribute,
+    value string;
+
+allele sub attribute,
+    value string;
+
+allergen-group sub attribute,
+    value string;
+
+allergen-id sub attribute,
+    value string;
+
+    who-iuis-id sub allergen-id,
+        value string;
+
+bit-score sub attribute,
+    value string;
+
+chromosome sub attribute,
+    value string;
+
+    chromosome-id sub chromosome,
+        value string;
+
+    chromosome-position sub chromosome,
+        value string;
+
+    chromosome-region sub chromosome,
+        value string;
+
+common-food-name sub attribute,
+    value string;
+
+confidence sub attribute,
+    value string;
+
+disease-id sub attribute,
+    value string;
+
+    efo-id sub disease-id,
+        value string;
+
+    hp-id sub disease-id,
+        value string;
+
+    mesh-id sub disease-id,
+        value string;
+
+disease-name sub attribute,
+    value string;
+
+epitope sub attribute,
+    value string,
+    has antibody-used,
+    has assay-type-used,
+    has pubmed-id;
+
+    epitope-nature sub epitope,
+        value string;
+
+    epitope-sequence sub epitope,
+        value string;
+
+        sequence-position sub epitope-sequence,
+            value string,
+            has antibody-used,
+            has assay-type-used,
+            has pubmed-id;
+
+    epitope-type sub epitope,
+        value string;
+
+expected-value sub attribute,
+    value string;
+
+food-id sub attribute,
+    value string;
+
+    fdc-id sub food-id,
+        value string;
+
+    food-db-id sub food-id,
+        value string;
+
+    food-subgroup sub food-group,
+        value string;
+        
+    synoymns sub common-food-name,
+        value string;
+
+        date-published sub fdc-id,
+            value string;
+
+        usda-dataset-type sub fdc-id,
+            value string;
+
+        usda-description sub fdc-id,
+            value string;
+
+food-type sub attribute,
+    value string;
+
+food-db-description sub attribute,
+    value string;
+
+scientific-name sub attribute,
+    value string;
+
+food-group sub attribute,
+    value string;
+
+classification-name sub attribute,
+    value string;
+
+gene-id sub attribute,
+    value string;
+
+    ensembl-id sub gene-id,
+        value string;
+
+    hgnc-id sub gene-id,
+        value string;
+
+interaction-id sub attribute,
+    value string;
+
+    ebi-interaction-id sub interaction-id,
+        value string;
+
+intergenic sub attribute,
+    value boolean;
+
+methods sub attribute,
+    value string;
+
+    antibody-used sub methods,
+        value string;
+
+    assay-type-used sub methods,
+        value string;
+
+    interaction-detection sub methods,
+        value string;
+
+    replication-sample-size sub methods,
+        value string;
+
+    starting-sample-size sub methods,
+        value string;
+
+number-of-gap-openings sub attribute,
+    value string;
+
+number-of-mismatches sub attribute,
+    value string;
+
+numer-of-gap-openings sub attribute,
+    value string;
+
+percent-identical-matches sub attribute,
+    value string;
+
+protein-id sub attribute,
+    value string;
+
+    ncbi-aid sub protein-id,
+        value string;
+
+    ncbi-gi sub protein-id,
+        value string;
+
+    ncbi-id sub protein-id,
+        value string;
+
+    uniprot-id sub protein-id,
+        value string;
+
+publication-extract sub attribute,
+    value string;
+
+publication-id sub attribute,
+    value string;
+
+    pubmed-id sub publication-id,
+        value string;
+
+query-alignment-end sub attribute,
+    value string;
+
+query-alignment-start sub attribute,
+    value string;
+
+results sub attribute,
+    value string;
+
+    confidence-interval sub results,
+        value string;
+
+    odds-ratio-or-beta sub results,
+        value string;
+
+    p-value sub results,
+        value string;
+
+    risk-allele-frequency sub results,
+        value string;
+
+sequence sub attribute,
+    value string,
+    has sequence-length;
+
+sequence-length sub attribute,
+    value string;
+
+snp-context sub attribute,
+    value string;
+
+snp-id sub attribute,
+    value string;
+
+    rs-id sub snp-id,
+        value string;
+
+species-name sub attribute,
+    value string;
+
+species-tax-id sub attribute,
+    value string;
+
+subject-alignment-end sub attribute,
+    value string;
+
+subject-alignment-start sub attribute,
+    value string;
+
+disease sub entity,
+    has disease-id,
+    has efo-id,
+    has hp-id,
+    has mesh-id,
+    has disease-name,
+    plays disease-associated-with-food,
+    plays disease-associated-with-snp,
+    plays disease-found-in-publication;
+
+downstream-gene sub entity,
+    has gene-id,
+    has ensembl-id,
+    plays gene-related-to-snp;
+
+food sub entity,
+    has common-food-name,
+    has food-id,
+    has fdc-id,
+    has date-published,
+    has usda-dataset-type,
+    has usda-description,
+    has food-db-description,
+    has scientific-name,
+    has food-group,
+    has food-subgroup,
+    has classification-name,
+    has food-db-id,
+    has food-type,
+    has species-name,
+    has species-tax-id,
+    plays food-associated-with-disease,
+    plays food-contains-allergen;
+
+gene sub entity,
+    has chromosome,
+    has chromosome-id,
+    has chromosome-position,
+    has chromosome-region,
+    has gene-id,
+    has hgnc-id,
+    plays gene-found-in-publication,
+    plays gene-related-to-snp;
+
+protein-allergen sub entity,
+    has allergen-group,
+    has allergen-id,
+    has who-iuis-id,
+    has epitope,
+    has epitope-nature,
+    has epitope-sequence,
+    has sequence-position,
+    has epitope-type,
+    has protein-id,
+    has ncbi-aid,
+    has ncbi-gi,
+    has ncbi-id,
+    has uniprot-id,
+    has sequence,
+    has sequence-length,
+    has species-name,
+    has species-tax-id,
+    plays allergen-found-in-publication,
+    plays allergen-isin-food,
+    plays protein-query,
+    plays protein-source,
+    plays protein-subject,
+    plays protein-target;
+
+publication sub entity,
+    has confidence,
+    has interaction-id,
+    has ebi-interaction-id,
+    has methods,
+    has antibody-used,
+    has assay-type-used,
+    has interaction-detection,
+    has replication-sample-size,
+    has starting-sample-size,
+    has publication-extract,
+    has publication-id,
+    has pubmed-id,
+    has results,
+    has confidence-interval,
+    has odds-ratio-or-beta,
+    has p-value,
+    has risk-allele-frequency,
+    plays studied-in-publication;
+
+snp sub entity,
+    has allele,
+    has intergenic,
+    has snp-context,
+    has snp-id,
+    has rs-id,
+    plays snp-associated-with-disease,
+    plays snp-found-in-publication,
+    plays snp-related-to-gene;
+
+upstream-gene sub entity,
+    has gene-id,
+    has ensembl-id,
+    plays gene-related-to-snp;
+
+allergen-food-association sub relation,
+    has publication-extract,
+    relates allergen-isin-food,
+    relates food-contains-allergen;
+
+food-disease-association sub relation,
+    relates disease-associated-with-food,
+    relates food-associated-with-disease;
+
+gene-snp-relationship sub relation,
+    relates gene-related-to-snp,
+    relates snp-related-to-gene;
+
+has-similar-sequence sub relation,
+    has algorithm,
+    has blast,
+    has alignment-length,
+    has bit-score,
+    has expected-value,
+    has starting-sample-size,
+    has number-of-gap-openings,
+    has number-of-mismatches,
+    has numer-of-gap-openings,
+    has percent-identical-matches,
+    has query-alignment-end,
+    has query-alignment-start,
+    has subject-alignment-end,
+    has subject-alignment-start,
+    relates protein-query,
+    relates protein-subject;
+
+interaction sub relation,
+    has confidence,
+    has interaction-id,
+    has ebi-interaction-id,
+    has interaction-detection,
+    has publication-id,
+    has pubmed-id,
+    plays interaction-studied-in,
+    relates protein-source,
+    relates protein-target;
+
+snp-disease-association sub relation,
+    has replication-sample-size,
+    has starting-sample-size,
+    has publication-extract,
+    has odds-ratio-or-beta,
+    has p-value,
+    has risk-allele-frequency,
+    relates disease-associated-with-snp,
+    relates snp-associated-with-disease;
+
+studied-in sub relation,
+    relates allergen-found-in-publication,
+    relates disease-found-in-publication,
+    relates gene-found-in-publication,
+    relates interaction-studied-in,
+    relates publication-studied-in,
+    relates snp-found-in-publication,
+    relates studied-in-publication;

@@ -1,0 +1,4 @@
+tabulate
+pandas
+argparse
+nutritionix

@@ -1,0 +1,1 @@
+match $fr ($x, $y) isa allergen-food-association; $x isa food, has common-food-name $x-fn; $x-fn contains "Kiwi"; $y isa protein-allergen, has allergen-group $y-f, has sequence-length $y-fx, has who-iuis-id $y-fv, has uniprot-id $y-fn, has sequence $y-pn; get; offset 0; limit 10;
